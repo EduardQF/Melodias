@@ -32,14 +32,14 @@ if 'EscucharPrx' not in _M_Conector.__dict__:
     _M_Conector.EscucharPrx = Ice.createTempClass()
     class EscucharPrx(Ice.ObjectPrx):
 
-        def escucharNota(self, secuencia, context=None):
-            return _M_Conector.Escuchar._op_escucharNota.invoke(self, ((secuencia, ), context))
+        def escucharNota(self, melodia, context=None):
+            return _M_Conector.Escuchar._op_escucharNota.invoke(self, ((melodia, ), context))
 
-        def escucharNotaAsync(self, secuencia, context=None):
-            return _M_Conector.Escuchar._op_escucharNota.invokeAsync(self, ((secuencia, ), context))
+        def escucharNotaAsync(self, melodia, context=None):
+            return _M_Conector.Escuchar._op_escucharNota.invokeAsync(self, ((melodia, ), context))
 
-        def begin_escucharNota(self, secuencia, _response=None, _ex=None, _sent=None, context=None):
-            return _M_Conector.Escuchar._op_escucharNota.begin(self, ((secuencia, ), _response, _ex, _sent, context))
+        def begin_escucharNota(self, melodia, _response=None, _ex=None, _sent=None, context=None):
+            return _M_Conector.Escuchar._op_escucharNota.begin(self, ((melodia, ), _response, _ex, _sent, context))
 
         def end_escucharNota(self, _r):
             return _M_Conector.Escuchar._op_escucharNota.end(self, _r)
@@ -73,7 +73,7 @@ if 'EscucharPrx' not in _M_Conector.__dict__:
         def ice_staticId():
             return '::Conector::Escuchar'
 
-        def escucharNota(self, secuencia, current=None):
+        def escucharNota(self, melodia, current=None):
             raise NotImplementedError("servant method 'escucharNota' not implemented")
 
         def __str__(self):
@@ -84,7 +84,7 @@ if 'EscucharPrx' not in _M_Conector.__dict__:
     _M_Conector._t_EscucharDisp = IcePy.defineClass('::Conector::Escuchar', Escuchar, (), None, ())
     Escuchar._ice_type = _M_Conector._t_EscucharDisp
 
-    Escuchar._op_escucharNota = IcePy.Operation('escucharNota', Ice.OperationMode.Normal, Ice.OperationMode.Normal, False, None, (), (((), IcePy._t_string, False, 0),), (), ((), IcePy._t_bool, False, 0), ())
+    Escuchar._op_escucharNota = IcePy.Operation('escucharNota', Ice.OperationMode.Normal, Ice.OperationMode.Normal, False, None, (), (((), IcePy._t_int, False, 0),), (), ((), IcePy._t_bool, False, 0), ())
 
     _M_Conector.Escuchar = Escuchar
     del Escuchar
