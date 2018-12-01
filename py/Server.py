@@ -1,6 +1,6 @@
 import sys, Ice
 import Conector
-
+import grovepiActuador as ga
 # Actiba los actuadores necesarios para cada una de las melodias
 #0. Secuencia no encontrada
 #notes = deque(['G','G','G','G','G','G'], maxlen=6)
@@ -17,45 +17,31 @@ import Conector
 #-------------------------------CONFRIMADOR--------------------------------------------------------------
 #clase que confirma que la melodia se encuentra dentro de la matrices guardadas
 class ConfirmarMelodiaI(Conector.ConfirmarMelodia):
-    #matriz de nota
-    #Espectro sonoro para cada nota
-    BANDWIDTH = 25
-    # frecuencias (Hz) a detectar (Use audacity to record a wave and then do Analyze->Plot Spectrum)
-    D4 = 630
-    E = 685
-    F = 755
-    G = 806
-    A = 890
-    B = 1000
-    D5 = 1175
 
-    #rango de frecuencia por cada nota
-    #rangeD4 = range(D4-BANDWIDTH,D4+BANDWIDTH)
-    #rangeE = range(E-BANDWIDTH,E+BANDWIDTH)
-    #rangeF = range(F-BANDWIDTH,F+BANDWIDTH)
-    #rangeG = range(G-BANDWIDTH,G+BANDWIDTH)
-    #rangeA = range(A-BANDWIDTH,A+BANDWIDTH)
-    #rangeB = range(B-BANDWIDTH,B+BANDWIDTH)
-    #rangeD5 = range(D5-BANDWIDTH,D5+BANDWIDTH)
-
-    #matriz de melodias
-    #notes = deque(['G','G','G','G','G','G'], maxlen=6)
-    #time = deque(['A','D4','F','A','D4','F'])
-    #fire = deque(['F','D4','F','D4','A','F'])
-    #storm = deque(['D4','F','D5','D4','F','D5'])
-    #sun = deque(['A','F','D5','A','F','D5'])
-    #forest = deque(['D4','D5','B','A','B','A'])
+    def __init__(self):
+        time="ADFADF"
+        fire="FDFDAF"
+        strom="DFDDFD"
+        sun="AFDAFD"
+        forest="DDBABA"
+        self.melodias=[time,fire,strom,sun,forest]
 
     #metodo que confirma la existencia de la secuencia en la matriz.
     def confirmarcion(self,secuencia,current=None):
+        print (secuencia)
+        for i in range(len(self.melodias)):
+            if (secuencia == self.melodias[i]):
+                print "valor: " , (i+1)
+                return (i + 1)
         return 0
 
 #---------------------------------------ACTUADOR------------------------------------------------------------
 #clase que activa los actuadores luego de que se tienen las secuancias confirmadas
 
-class ActuarI(Conector.Escuchar):
-    def escucharNota(self, melodia, current=None):
-        return False
+class ActuarI(Conector.Actuador):
+    def actuart(self, melodia, current=None):
+        print ("entro ", melodia)
+        ga.PrintCancion(melodia)
 
 #--------------------------------------SERVIDOR-------------------------------------------------------------
 with Ice.initialize(sys.argv) as communicator:

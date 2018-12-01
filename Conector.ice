@@ -1,6 +1,6 @@
 module Conector{
-  interface Escuchar{
-    bool escucharNota(int melodia);
+  interface Actuador{
+    bool actuart(int melodia);
     //parsearmelodia();
     //reconocer();
   };

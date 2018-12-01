@@ -18,6 +18,7 @@ public class ConfirmarMelodiaI implements ConfirmarMelodia {
      */
     @Override
     public int confirmarcion(String secuencia, Current current) {
+        System.out.println("Secuancia: "+secuencia);
         return 0;
     }
 

@@ -26,68 +26,68 @@ import Ice, IcePy
 _M_Conector = Ice.openModule('Conector')
 __name__ = 'Conector'
 
-_M_Conector._t_Escuchar = IcePy.defineValue('::Conector::Escuchar', Ice.Value, -1, (), False, True, None, ())
+_M_Conector._t_Actuador = IcePy.defineValue('::Conector::Actuador', Ice.Value, -1, (), False, True, None, ())
 
-if 'EscucharPrx' not in _M_Conector.__dict__:
-    _M_Conector.EscucharPrx = Ice.createTempClass()
-    class EscucharPrx(Ice.ObjectPrx):
+if 'ActuadorPrx' not in _M_Conector.__dict__:
+    _M_Conector.ActuadorPrx = Ice.createTempClass()
+    class ActuadorPrx(Ice.ObjectPrx):
 
-        def escucharNota(self, melodia, context=None):
-            return _M_Conector.Escuchar._op_escucharNota.invoke(self, ((melodia, ), context))
+        def actuart(self, melodia, context=None):
+            return _M_Conector.Actuador._op_actuart.invoke(self, ((melodia, ), context))
 
-        def escucharNotaAsync(self, melodia, context=None):
-            return _M_Conector.Escuchar._op_escucharNota.invokeAsync(self, ((melodia, ), context))
+        def actuartAsync(self, melodia, context=None):
+            return _M_Conector.Actuador._op_actuart.invokeAsync(self, ((melodia, ), context))
 
-        def begin_escucharNota(self, melodia, _response=None, _ex=None, _sent=None, context=None):
-            return _M_Conector.Escuchar._op_escucharNota.begin(self, ((melodia, ), _response, _ex, _sent, context))
+        def begin_actuart(self, melodia, _response=None, _ex=None, _sent=None, context=None):
+            return _M_Conector.Actuador._op_actuart.begin(self, ((melodia, ), _response, _ex, _sent, context))
 
-        def end_escucharNota(self, _r):
-            return _M_Conector.Escuchar._op_escucharNota.end(self, _r)
+        def end_actuart(self, _r):
+            return _M_Conector.Actuador._op_actuart.end(self, _r)
 
         @staticmethod
         def checkedCast(proxy, facetOrContext=None, context=None):
-            return _M_Conector.EscucharPrx.ice_checkedCast(proxy, '::Conector::Escuchar', facetOrContext, context)
+            return _M_Conector.ActuadorPrx.ice_checkedCast(proxy, '::Conector::Actuador', facetOrContext, context)
 
         @staticmethod
         def uncheckedCast(proxy, facet=None):
-            return _M_Conector.EscucharPrx.ice_uncheckedCast(proxy, facet)
+            return _M_Conector.ActuadorPrx.ice_uncheckedCast(proxy, facet)
 
         @staticmethod
         def ice_staticId():
-            return '::Conector::Escuchar'
-    _M_Conector._t_EscucharPrx = IcePy.defineProxy('::Conector::Escuchar', EscucharPrx)
+            return '::Conector::Actuador'
+    _M_Conector._t_ActuadorPrx = IcePy.defineProxy('::Conector::Actuador', ActuadorPrx)
 
-    _M_Conector.EscucharPrx = EscucharPrx
-    del EscucharPrx
+    _M_Conector.ActuadorPrx = ActuadorPrx
+    del ActuadorPrx
 
-    _M_Conector.Escuchar = Ice.createTempClass()
-    class Escuchar(Ice.Object):
+    _M_Conector.Actuador = Ice.createTempClass()
+    class Actuador(Ice.Object):
 
         def ice_ids(self, current=None):
-            return ('::Conector::Escuchar', '::Ice::Object')
+            return ('::Conector::Actuador', '::Ice::Object')
 
         def ice_id(self, current=None):
-            return '::Conector::Escuchar'
+            return '::Conector::Actuador'
 
         @staticmethod
         def ice_staticId():
-            return '::Conector::Escuchar'
+            return '::Conector::Actuador'
 
-        def escucharNota(self, melodia, current=None):
-            raise NotImplementedError("servant method 'escucharNota' not implemented")
+        def actuart(self, melodia, current=None):
+            raise NotImplementedError("servant method 'actuart' not implemented")
 
         def __str__(self):
-            return IcePy.stringify(self, _M_Conector._t_EscucharDisp)
+            return IcePy.stringify(self, _M_Conector._t_ActuadorDisp)
 
         __repr__ = __str__
 
-    _M_Conector._t_EscucharDisp = IcePy.defineClass('::Conector::Escuchar', Escuchar, (), None, ())
-    Escuchar._ice_type = _M_Conector._t_EscucharDisp
+    _M_Conector._t_ActuadorDisp = IcePy.defineClass('::Conector::Actuador', Actuador, (), None, ())
+    Actuador._ice_type = _M_Conector._t_ActuadorDisp
 
-    Escuchar._op_escucharNota = IcePy.Operation('escucharNota', Ice.OperationMode.Normal, Ice.OperationMode.Normal, False, None, (), (((), IcePy._t_int, False, 0),), (), ((), IcePy._t_bool, False, 0), ())
+    Actuador._op_actuart = IcePy.Operation('actuart', Ice.OperationMode.Normal, Ice.OperationMode.Normal, False, None, (), (((), IcePy._t_int, False, 0),), (), ((), IcePy._t_bool, False, 0), ())
 
-    _M_Conector.Escuchar = Escuchar
-    del Escuchar
+    _M_Conector.Actuador = Actuador
+    del Actuador
 
 _M_Conector._t_ConfirmarMelodia = IcePy.defineValue('::Conector::ConfirmarMelodia', Ice.Value, -1, (), False, True, None, ())
 
