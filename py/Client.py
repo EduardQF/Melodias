@@ -5,8 +5,8 @@ import CaptadorFrecuencia as cf
 import stack as sc
 
 with Ice.initialize(sys.argv) as communicator:
-    baseC = communicator.stringToProxy("ConfirmadorPRX:default -p 10003")
-    baseE = communicator.stringToProxy("ActuadorPRX:default -p 10002")
+    baseC = communicator.stringToProxy("ConfirmadorPRX:tcp -h 192.168.43.82 -p 10003")
+    baseE = communicator.stringToProxy("ActuadorPRX:tcp -h 192.168.43.82 -p 10002")
 
     confirmador = Conector.ConfirmarMelodiaPrx.checkedCast(baseC)
     actuador = Conector.ActuadorPrx.checkedCast(baseE)
@@ -38,8 +38,8 @@ with Ice.initialize(sys.argv) as communicator:
         if(melodi.length() == 6):
             print("----------------------------------------------------------------")
             mel=melodi.toString()
+            #print (confirmador.confirmarcion(mel))
             actuador.actuart(confirmador.confirmarcion(mel))
             print("----------------------------------------------------------------")
             melodi=sc.Stack()
-
     print("* done recording")
