@@ -21,10 +21,10 @@ class ConfirmarMelodiaI(Conector.ConfirmarMelodia):
     def __init__(self):
         time="ADFADF"
         fire="FDFDAF"
-        strom="DFDDFD"
+        storm="DFDDFD"
         sun="AFDAFD"
         forest="DDBABA"
-        self.melodias=[time,fire,strom,sun,forest]
+        self.melodias=[time,fire,storm,sun,forest]
 
     #metodo que confirma la existencia de la secuencia en la matriz.
     def confirmarcion(self,secuencia,current=None):

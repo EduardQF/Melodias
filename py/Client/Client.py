@@ -5,8 +5,8 @@ import CaptadorFrecuencia as cf
 import stack as sc
 
 with Ice.initialize(sys.argv) as communicator:
-    baseC = communicator.stringToProxy("ConfirmadorPRX:tcp -h 192.168.43.82 -p 10003")
-    baseE = communicator.stringToProxy("ActuadorPRX:tcp -h 192.168.43.82 -p 10002")
+    baseC = communicator.stringToProxy("ConfirmadorPRX:tcp -h 10.10.10.51 -p 10003")
+    baseE = communicator.stringToProxy("ActuadorPRX:tcp -h 10.10.10.51  -p 10002")
 
     confirmador = Conector.ConfirmarMelodiaPrx.checkedCast(baseC)
     actuador = Conector.ActuadorPrx.checkedCast(baseE)
@@ -24,6 +24,7 @@ with Ice.initialize(sys.argv) as communicator:
 
     #for i in range(0, int(RATE / CHUNK * RECORD_SECONDS)):
     while(True):
+
         thefreq=cf.captador()
         nota=rec.pitch(thefreq)
 

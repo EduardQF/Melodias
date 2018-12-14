@@ -1,5 +1,5 @@
-'''import grovepi
-import Time
+#import grovepi
+#import Time
 
 def __init__(self):
     self.grovepi.pinMode(3,"OUTPUT")
@@ -27,7 +27,7 @@ def printLed(self,a,b,c,d,e,f):
     self.grovepi.analogWrite(f,255)
     time.sleep(1)
     self.grovepi.analogWrite(f,1)
-'''
+
 def PrintCancion(melodia):
     if(melodia == 1):
         print ("song of time")
