@@ -9,7 +9,7 @@ FORMAT = pyaudio.paInt16
 CHANNELS = 1
 RATE = 44100
 RECORD_SECONDS = 3
-WAVE_OUTPUT_FILENAME = "outputRE.wav"
+WAVE_OUTPUT_FILENAME = "smw_coin.wav"
 '''
 def get_rms(block):
     count = len(block)/2

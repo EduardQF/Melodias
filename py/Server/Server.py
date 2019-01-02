@@ -1,6 +1,7 @@
 import sys, Ice
 import Conector
-import grovepiActuador as ga
+import grovepiActuador
+import display
 # Actiba los actuadores necesarios para cada una de las melodias
 #0. Secuencia no encontrada
 #notes = deque(['G','G','G','G','G','G'], maxlen=6)
@@ -11,7 +12,7 @@ import grovepiActuador as ga
 #3. song of Strom
 #storm = deque(['D4','F','D5','D4','F','D5'])
 #4. ligth song
-#sun = deque(['A','F','D5','A','F','D5'])
+#sun = deque(['A','F','D5','A','F','D5']):wq
 #5. minutero del bosque.
 #forest = deque(['D4','D5','B','A','B','A'])
 #-------------------------------CONFRIMADOR--------------------------------------------------------------
@@ -21,10 +22,10 @@ class ConfirmarMelodiaI(Conector.ConfirmarMelodia):
     def __init__(self):
         time="ADFADF"
         fire="FDFDAF"
-        storm="DFDDFD"
+        strom="DFDDFD"
         sun="AFDAFD"
-        forest="DDBABA"
-        self.melodias=[time,fire,storm,sun,forest]
+        saria="FABFAB"
+        self.melodias=[time,fire,strom,sun,saria]
 
     #metodo que confirma la existencia de la secuencia en la matriz.
     def confirmarcion(self,secuencia,current=None):
@@ -34,19 +35,24 @@ class ConfirmarMelodiaI(Conector.ConfirmarMelodia):
                 print "valor: " , (i+1)
                 return (i + 1)
         return 0
-
 #---------------------------------------ACTUADOR------------------------------------------------------------
 #clase que activa los actuadores luego de que se tienen las secuancias confirmadas
 
 class ActuarI(Conector.Actuador):
+    def __init__(self):
+        self.ga=grovepiActuador.GroveActuador()
+        
     def actuart(self, melodia, current=None):
         print ("entro ", melodia)
-        ga.PrintCancion(melodia)
+        self.ga.PrintCancion(melodia)
 
 #--------------------------------------SERVIDOR-------------------------------------------------------------
 with Ice.initialize(sys.argv) as communicator:
-    adapterE = communicator.createObjectAdapterWithEndpoints("Actuador", "default -p 10002")
-    adapterC = communicator.createObjectAdapterWithEndpoints("Confirmador", "default -p 10003")
+    ip=display.start()
+    ac = "tcp -h "+ip+" -p 10002"
+    co = "tcp -h "+ip+" -p 10003"
+    adapterE = communicator.createObjectAdapterWithEndpoints("Actuador", ac)
+    adapterC = communicator.createObjectAdapterWithEndpoints("Confirmador", co)
 
     objectC = ConfirmarMelodiaI()
     objectE = ActuarI()
@@ -61,4 +67,5 @@ with Ice.initialize(sys.argv) as communicator:
     print "AdapterC:", adapterC.getEndpoints()
     print "AdapterE:", adapterE.getEndpoints()
     print "----------------------------------------------------"
+    
     communicator.waitForShutdown()
